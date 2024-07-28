@@ -1,0 +1,12 @@
+{
+  "name": "pedestal",
+  "version": "0.0.0",
+  "repo": "goodcleanfun/pedestal",
+  "description": "Simple, fast iterator-based row-mapping in C for ETL/ingestion",
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+      "goodcleanfun/cstring_array": "*"
+  },
+  "src": []
+}
