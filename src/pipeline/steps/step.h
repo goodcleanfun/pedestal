@@ -71,23 +71,17 @@ static bool STEP_TYPE(run)(pipeline_step_t *base, void *data) {
 static const pipeline_step_t STEP_TYPE(base) = { .type = STEP_NAME_STR, .run = STEP_TYPE(run) };
 
 #ifndef STEP_OPTIONS_TYPE
-STEP_TYPE(step_t) *STEP_TYPE(new)(STEP_TYPE(func) func, STEP_TYPE(validate) validate) {
+STEP_TYPE(step_t) STEP_TYPE(step)(STEP_TYPE(func) func, STEP_TYPE(validate) validate) {
 #else
-STEP_TYPE(step_t) *STEP_TYPE(new)(STEP_TYPE(func) func, STEP_TYPE(validate) validate, STEP_OPTIONS_TYPE options) {
+STEP_TYPE(step_t) STEP_TYPE(step)(STEP_TYPE(func) func, STEP_TYPE(validate) validate, STEP_OPTIONS_TYPE options) {
 #endif
-    STEP_TYPE(step_t) *step = malloc(sizeof(STEP_TYPE(step_t)));
-    if (step == NULL) return NULL;
-    step->base = STEP_TYPE(base);
-    step->input = (INPUT_TYPE)0;
-    step->output = (OUTPUT_TYPE)0;
-    step->validate = validate;
-    step->func = func;
+    STEP_TYPE(step_t) step;
+    step.base = STEP_TYPE(base);
+    step.input = (INPUT_TYPE)0;
+    step.output = (OUTPUT_TYPE)0;
+    step.validate = validate;
+    step.func = func;
     return step;
-}
-
-void STEP_TYPE(destroy)(STEP_TYPE(step_t) *step) {
-    if (step == NULL) return;
-    free(step);
 }
 
 #undef CONCAT_
